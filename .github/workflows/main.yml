@@ -29,7 +29,7 @@ jobs:
           ${{ runner.os }}-maven-
 
     - name: Build project with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B package --file webapp/pom.xml
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v2
@@ -39,4 +39,4 @@ jobs:
         aws-region: us-east-1
 
     - name: Upload Maven build artifacts to S3
-      run: aws s3 sync target/ s3://new-bucket-git-actions --delete
+      run: aws s3 sync webapp/target/ s3://new-bucket-git-actions --delete
